@@ -1,6 +1,7 @@
+import p5Types from "p5";
 export type coordinates = [number, number, number];
 
-export class Sphere{
+export class Sphere {
   private meridians: number;
   private parallels: number;
   private radius: number;
@@ -8,31 +9,40 @@ export class Sphere{
   private longitude: number;
   private centerGeometric: coordinates;
   private points: Array<coordinates>;
+  private p5: p5Types;
 
-  constructor(centerGeometric: coordinates = [0, 0, 0],  radius: number = 4, meridians: number = 8, parallels: number = 7) {
-    this.setMeridians = meridians;
-    this.setParallels = parallels;
-    this.setRadius = radius;
+  constructor(
+    centerGeometric: coordinates = [0, 0, 0],
+    radius: number = 4,
+    meridians: number = 8,
+    parallels: number = 7,
+    p5: p5Types
+  ) {
+    this.meridians = meridians;
+    this.parallels = parallels;
+    this.radius = radius;
+    this.p5 = p5;
+    this.points = [];
+    this.centerGeometric = centerGeometric;
 
-    this.latitude = (360/this.getMeridians);
-    this.longitude = (180/this.getParallels);
+    this.latitude = 360 / this.getMeridians;
+    this.longitude = 180 / this.getParallels;
 
     this.setCenterGeometric = centerGeometric;
-    
+
     let total = 100;
 
-    for(let i = 0; i < total; i++){
-      let lon = map(i, 0, total, -PI, PI);
-      for(let j = 0; j < total; j++){
-        let lat = map(j, 0, total, -HALF_PI, HALF_PI);
+    for (let i = 0; i < total; i++) {
+      let lon = this.p5.map(i, 0, total, -this.p5.PI, this.p5.PI);
+      for (let j = 0; j < total; j++) {
+        let lat = this.p5.map(j, 0, total, -this.p5.HALF_PI, this.p5.HALF_PI);
         this.points.push([
-          (this.radius * sin(lon) * cos(lat)),
-          (this.radius * sin(lon) * sin(lat)),
-          (this.radius * cos(lon))
-        ])
+          this.radius * this.p5.sin(lon) * this.p5.cos(lat),
+          this.radius * this.p5.sin(lon) * this.p5.sin(lat),
+          this.radius * this.p5.cos(lon),
+        ]);
       }
     }
-    
   }
 
   public get getMeridians(): number {
@@ -81,5 +91,9 @@ export class Sphere{
 
   public set setCenterGeometric(centerGeometric: coordinates) {
     this.centerGeometric = centerGeometric;
+  }
+
+  public get getPoints(): Array<coordinates> {
+    return this.points;
   }
 }

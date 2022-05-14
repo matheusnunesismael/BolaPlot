@@ -1,119 +1,46 @@
+# Getting Started with Create React App
 
-# P5 TypeScript Starter
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-This project will quickly get you something working in [p5.js](https://p5js.org/) and [typescript](https://www.typescriptlang.org/).
+## Available Scripts
 
-## Demo
+In the project directory, you can run:
 
-**[Click here for Demo](https://gaweph.github.io/p5-typescript-starter/)**
+### `npm start`
 
-![Demo](https://gaweph.github.io/p5-typescript-starter/p5-typescript-demo.png?raw=true "Demo")
+Runs the app in the development mode.\
+Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-This demo is based on the [Regular Polygon](https://p5js.org/examples/form-regular-polygon.html) sketch available in the p5js examples.
+The page will reload if you make edits.\
+You will also see any lint errors in the console.
 
-## Getting Started
+### `npm test`
 
-### Installing
+Launches the test runner in the interactive watch mode.\
+See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-```
-git clone https://github.com/Gaweph/p5-typescript-starter.git
-```
+### `npm run build`
 
-```
-npm install
-```
+Builds the app for production to the `build` folder.\
+It correctly bundles React in production mode and optimizes the build for the best performance.
 
-### Using
+The build is minified and the filenames include the hashes.\
+Your app is ready to be deployed!
 
-```
-npm start
-```
+See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-A local version will now be running on [localhost:3000](http://localhost:3000).
+### `npm run eject`
 
-## Advanced
+**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
 
-### Global and Instanced Modes
+If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-P5 is able to run in either [global or instance mode](https://github.com/processing/p5.js/wiki/Global-and-instance-mode).
+Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
 
-This starter project uses **global mode** by default to bring it in line with most of the online resources provided by the project. 
+You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
-As stated on the P5 wiki:
+## Learn More
 
-> While this is convenient (and friendlier) it's important to note that this can lead to problems and confusion down the road when mixing other JS libraries or trying to embed multiple p5 sketches on the same page. A safer, more advanced methodology is to create a p5 sketch as an object "instance".
+You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-The following examples are both functionally the same.
-
-#### Global Mode
-
-```typescript
-let x = 100;
-let y = 100;
-
-function setup() {
-  createCanvas(windowWidth, windowHeight);
-}
-
-function draw() {
-  background(0);
-  fill(255);
-  rect(x, y, 50, 50);
-}
-```
-
-#### Instanced Mode
-
-```typescript
-var sketch = (p: p5) => {
-  this.x = 100;
-  this.y = 100;
-  p.setup = () => {
-    p.createCanvas(p.windowWidth, p.windowHeight);
-  };
-
-  p.draw = () => {
-    p.background(0);
-    p.fill(255);
-    p.rect(this.x, this.y, 50, 50);
-  };
-};
-
-new p5(sketch);
-```
-
-This starter project will work with either mode, feel free to experiment with both.
-
-### Using External Libraries
-
-To use an external library, e.g. [qrcode-generator](https://www.npmjs.com/package/qrcode-generator).
-
-1. Install the library with `npm install --save-dev qrcode-generator`.
-
-2. Add a `script` tag to your [index.html](index.html).
-
-   ```html
-   <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcode-generator/1.4.4/qrcode.min.js"></script>
-   ```
-
-3. Import via [global.d.ts](global.d.ts).
-
-   ```typescript
-   import qrcode = require('qrcode-generator');
-   ```
-
-4. Use in [sketch/sketch.ts](sketch/sketch.ts).
-
-   ```typescript
-   var qr = qrcode(4, 'L');
-   qr.addData('https://github.com/Gaweph/p5-typescript-starter');
-   qr.make();
-
-   text(qr.createASCII(), 1, 1);
-   ```
-
-See [dblock/p5qr](https://github.com/dblock/p5qr) for a working sample.
-
-## Copyright and License
-
-MIT License, see [LICENSE](LICENSE) for details.
+To learn React, check out the [React documentation](https://reactjs.org/).

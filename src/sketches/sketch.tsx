@@ -48,6 +48,7 @@ export const SketchComponent = () => {
   };
 
   const draw = (p5: p5Types) => {
+    console.log("chamei o draw");
     p5.background("black");
     p5.orbitControl();
 

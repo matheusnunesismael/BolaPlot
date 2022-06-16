@@ -6,9 +6,17 @@ import { Sphere } from "../models/sphere";
 // P5 WILL AUTOMATICALLY USE GLOBAL MODE IF A DRAW() FUNCTION IS DEFINED
 function setup() {
   createCanvas(600, 600, "webgl");
-  const sphere = new Sphere([0, 0, 0], 100, 8, 7, "#FF0");
+  const sphere = new Sphere(
+    [0, 0, 0],
+    100,
+    8,
+    7,
+    "#FF0",
+    (Math.random() + 1).toString(36).substring(7),
+    "teste"
+  );
   console.log("here");
-  console.log(sphere.getPoints);
+  console.log(sphere);
 }
 
 // p5 WILL AUTO RUN THIS FUNCTION IF THE BROWSER WINDOW SIZE CHANGES

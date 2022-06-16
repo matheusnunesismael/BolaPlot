@@ -1,10 +1,16 @@
 import Sketch from "react-p5";
 import p5Types from "p5";
 
-import { Sphere } from "../models/sphere";
+import { Sphere, SphereType } from "../models/sphere";
+import { useSceneBloc } from "../context/Scene";
 
-// P5 WILL AUTOMATICALLY USE GLOBAL MODE IF A DRAW() FUNCTION IS DEFINED
-function setup() {
+export const SketchComponent = () => {
+  const scene = useSceneBloc();
+
+  const sceneObjects = scene.state.sceneObjects;
+
+  const selectedSphereId = scene.state.selectedSphere.id;
+
   createCanvas(600, 600, "webgl");
   const sphere = new Sphere(
     [0, 0, 0],
@@ -15,25 +21,12 @@ function setup() {
     (Math.random() + 1).toString(36).substring(7),
     "teste"
   );
+
   console.log("here");
   console.log(sphere);
-}
 
-// p5 WILL AUTO RUN THIS FUNCTION IF THE BROWSER WINDOW SIZE CHANGES
-function windowResized() {
-  resizeCanvas(windowWidth, windowHeight);
-}
-
-function draw() {
-  background(234);
-}
-
-export {};
-
-export const Sketch = () => {
   const windowResized = (p5: p5Types) => {
     const element = document.getElementById("mainCanvas");
-
     p5.resizeCanvas(
       element?.clientWidth || window.innerWidth,
       element?.clientHeight || window.innerHeight
@@ -47,6 +40,7 @@ export const Sketch = () => {
       element?.clientHeight || window.innerHeight,
       p5.WEBGL
     ).parent("mainCanvas");
+    // p5.noLoop()
 
     p5.frameRate(60);
     p5.debugMode();
@@ -76,5 +70,6 @@ export const Sketch = () => {
     p5.stroke(255, 0, 150);
     p5.strokeWeight(0.5);
   };
-  return <Sketch />;
+
+  return <Sketch setup={setup} windowResized={windowResized} draw={draw} />;
 };

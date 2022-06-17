@@ -1,25 +1,25 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
-
+import React from "react";
+import { SketchComponent } from "./sketches/sketch";
+import { useSceneBloc } from "./context/Scene";
+import { SceneState } from "./context/sceneState";
+import { BlocBuilder } from "./utils/BloC";
 function App() {
+  const sceneBloc = useSceneBloc();
+
+  const states = {
+    DoneScene: (
+      <div>
+        <SketchComponent />
+      </div>
+    ),
+    LoadingScene: <h1>Aqui dentro vai a tela de carregamento</h1>,
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BlocBuilder
+      bloc={sceneBloc}
+      builder={(state: SceneState) => states[state.kind]}
+    />
   );
 }
 

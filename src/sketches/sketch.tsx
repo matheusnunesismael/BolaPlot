@@ -2,30 +2,10 @@ import Sketch from "react-p5";
 import p5Types from "p5";
 
 import { Sphere, SphereType } from "../models/sphere";
-import { useSceneBloc } from "context/Scene";
+import { useSceneBloc } from "../context/Scene";
 
 export const SketchComponent = () => {
   const scene = useSceneBloc();
-
-  const sceneObjects = scene.state.sceneObjects;
-
-  const selectedSphereId = scene.state.selectedSphere
-    ? scene.state.selectedSphere.id
-    : "";
-
-  createCanvas(600, 600, "webgl");
-  const sphere = new Sphere(
-    [0, 0, 0],
-    100,
-    8,
-    7,
-    "#FF0",
-    (Math.random() + 1).toString(36).substring(7),
-    "teste"
-  );
-
-  console.log("here");
-  console.log(sphere);
 
   const windowResized = (p5: p5Types) => {
     const element = document.getElementById("mainCanvas");
@@ -50,6 +30,24 @@ export const SketchComponent = () => {
   };
 
   const draw = (p5: p5Types) => {
+    const sceneObjects = scene.state.sceneObjects;
+
+    const selectedSphereId = scene.state.selectedSphere
+      ? scene.state.selectedSphere.id
+      : "";
+
+    const sphere = new Sphere(
+      [0, 0, 0],
+      100,
+      8,
+      7,
+      "#FF0",
+      (Math.random() + 1).toString(36).substring(7),
+      "teste"
+    );
+
+    console.log("here");
+    console.log(sphere);
     console.log("chamei o draw");
     p5.background("black");
     p5.orbitControl();

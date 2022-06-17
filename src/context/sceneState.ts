@@ -17,7 +17,7 @@ export type SceneState = (LoadingSceneState | DoneSceneState) &
   CommonSceneState;
 
 export const initialSceneState: SceneState = {
-  kind: "LoadingScene",
+  kind: "DoneScene",
   sceneObjects: [],
   selectedSphere: undefined,
 };

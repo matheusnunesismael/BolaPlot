@@ -8,7 +8,7 @@ function App() {
 
   const states = {
     DoneScene: (
-      <div>
+      <div id="mainCanvas">
         <SketchComponent />
       </div>
     ),

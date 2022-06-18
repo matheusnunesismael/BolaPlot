@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
-import { createContext } from "utils/BloC/context";
+import { createContext } from "../utils/BloC/context";
 import { SceneBloc } from "./sceneBloc";
 
 const createSceneContext = () => {

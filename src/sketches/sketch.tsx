@@ -17,11 +17,13 @@ export const SketchComponent = () => {
 
   const setup = (p5: p5Types) => {
     const element = document.getElementById("mainCanvas");
-    p5.createCanvas(
-      element?.clientWidth || window.innerWidth,
-      element?.clientHeight || window.innerHeight,
-      p5.WEBGL
-    ).parent("mainCanvas");
+
+    // p5.createCanvas(
+    //   element?.clientWidth ? element?.clientWidth : window.innerWidth,
+    //   element?.clientHeight ? element?.clientHeight : window.innerHeight,
+    //   p5.WEBGL
+    // ).parent("mainCanvas");
+    p5.createCanvas(600, 600, p5.WEBGL).parent("mainCanvas");
     // p5.noLoop()
 
     p5.frameRate(60);
@@ -30,11 +32,13 @@ export const SketchComponent = () => {
   };
 
   const draw = (p5: p5Types) => {
+    console.log("chamei o draw");
+    p5.background("black");
+    p5.orbitControl();
+
     const sceneObjects = scene.state.sceneObjects;
 
-    const selectedSphereId = scene.state.selectedSphere
-      ? scene.state.selectedSphere.id
-      : "";
+    const selectedSphereId = scene.state.selectedSphere?.id;
 
     const sphere = new Sphere(
       [0, 0, 0],
@@ -46,11 +50,10 @@ export const SketchComponent = () => {
       "teste"
     );
 
+    scene.mapToDoneScene([sphere], sphere);
+
     console.log("here");
     console.log(sphere);
-    console.log("chamei o draw");
-    p5.background("black");
-    p5.orbitControl();
 
     p5.strokeWeight(0.5);
     sceneObjects?.forEach((sphere: SphereType) => {

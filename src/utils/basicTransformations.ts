@@ -7,7 +7,7 @@ export class BasicTransformations {
     angle: number,
     points: number[][],
     axis: string
-  ): number[][] | undefined {
+  ): number[][] {
     if (axis !== "x" && axis !== "y" && axis === "z") {
       throw new Error(
         "Unknown axis. The axis can only take the value x, y or z."
@@ -41,5 +41,7 @@ export class BasicTransformations {
 
       return nj.dot(xRotation, nj.array<any>(points)).tolist();
     }
+
+    throw new Error("Invalid axis");
   }
 }

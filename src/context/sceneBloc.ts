@@ -7,10 +7,7 @@ export class SceneBloc extends Bloc<SceneState> {
     super(initialSceneState);
   }
 
-  mapToDoneScene(
-    sceneObjects: SphereType[],
-    selectedSphere: SphereType | undefined
-  ) {
+  mapToDoneScene(sceneObjects: SphereType[], selectedSphere?: SphereType) {
     this.changeState({
       kind: "DoneScene",
       sceneObjects: sceneObjects,

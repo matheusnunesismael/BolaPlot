@@ -1,26 +1,30 @@
-import React from "react";
-import { SketchComponent } from "./sketches/sketch";
 import { useSceneBloc } from "./context/Scene";
 import { SceneState } from "./context/sceneState";
+import { SketchComponent } from "./sketches/sketch";
 import { BlocBuilder } from "./utils/BloC";
-function App() {
-  const sceneBloc = useSceneBloc();
+import { Layout } from "antd";
+const { Content } = Layout;
 
+export function App() {
   const states = {
     DoneScene: (
-      <div id="mainCanvas">
+      <Content id="mainCanvas">
         <SketchComponent />
-      </div>
+      </Content>
     ),
-    LoadingScene: <h1>Aqui dentro vai a tela de carregamento</h1>,
+    LoadingScene: (
+      <>
+        <h1>Carregando</h1>
+      </>
+    ),
   };
+
+  // const {  } = useSceneBloc();
 
   return (
     <BlocBuilder
-      bloc={sceneBloc}
+      bloc={useSceneBloc()}
       builder={(state: SceneState) => states[state.kind]}
     />
   );
 }
-
-export default App;
